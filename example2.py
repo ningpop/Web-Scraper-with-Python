@@ -22,4 +22,5 @@ for link in links[:-1]:
 
 max_page = pages[-1]
 
-print(max_page)
+for n in range(max_page):
+    print(f'start={n * 50}')
