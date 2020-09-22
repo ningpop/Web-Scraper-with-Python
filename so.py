@@ -10,6 +10,13 @@ def get_last_page():
     last_page = pages[-2].get_text(strip=True)
     return int(last_page)
 
+def extract_job(html):
+    title = html.find("h2").text.strip()
+    company, location = html.find("h3", {"class":"fc-black-700"}).find_all("span",recursive=False)
+    # recursive=False : 재귀적인 태그 갖고오지 않고 첫번째 태그만 가져옴
+    print(company.get_text(strip=True), location.get_text(strip=True))
+    return {"title":title}
+
 def extract_jobs(last_page):
     jobs = []
     for page in range(last_page):
@@ -17,7 +24,9 @@ def extract_jobs(last_page):
         soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div", {"class":"-job"})
         for result in results:
-            print(result["data-jobid"])
+            job = extract_job(result)
+            jobs.append(job)
+        return jobs
 
 def get_jobs():
     last_page = get_last_page()
