@@ -11,6 +11,7 @@
 ``` bash
 $ python -m venv venv
 $ source venv/Scripts/Activate
+$ pip install requests
 $ python downloader.py
 ```
 
@@ -18,5 +19,6 @@ $ python downloader.py
 ``` bash
 $ python3 -m venv venv
 $ source venv/bin/activate
+$ pip install requests
 $ python downloader.py
 ```
