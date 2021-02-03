@@ -16,19 +16,19 @@
 # save_to_file(jobs)
 
 """ Web Scrapper with Flask """
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask("SuperScrapper")
 
 # @: decorator(데코레이터), 함수를 꾸며주는 역할
 @app.route("/")
 def home():
-    return "Hello! Welcome to mi casa!"
+    return render_template("potato.html")
 
 
-@app.route("/contact")
-def potato():
-    return "Contact me!"
+@app.route("/<username>")
+def potato(username):
+    return f"Hello {username} how are you doing"
 
 
 app.run(host="0.0.0.0")
